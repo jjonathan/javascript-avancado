@@ -27,7 +27,12 @@
     			<input type="text" class="form-control" id="value" placeholder="Price...">
     		</div>
 
-    		<button class="btn btn-success" onclick="addItem();">Add</button>
+    		<span id="btn-update" style="display: none;">
+    			<button class="btn btn-default" onclick="updateData();">Save</button>
+    			<button class="btn btn-default" onclick="resetForm();">Cancel</button>
+    		</span>
+
+			<button id="btn-add" class="btn btn-default" onclick="addData();">Add</button>
 
     	</div>
 

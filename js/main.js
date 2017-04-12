@@ -30,7 +30,12 @@ function setList(list){
 		table += '<td>' + formatDesc(element.desc) + '</td>';
 		table += '<td>' + element.amount + '</td>';
 		table += '<td>' + formatValue(element.value) + '</td>';
-		table += '<td>Edit | Delete</td>';
+		table += '<td>';
+		table += '<div class="btn-group">';
+		table += '<button class="btn btn-default" onclick="setUpdate(' + index + ');">Edit</button>';
+		table += '<button class="btn btn-default" onclick="deleteItem(' + index + ');">Delete</button>';
+		table += '</div>';
+		table += '</td>';
 		table += '</tr>';
 	});
 
@@ -51,7 +56,7 @@ function formatValue(value){
 	return str;
 }
 
-function addItem(){
+function addData(){
 	var desc 	= document.getElementById('desc').value;
 	var amount 	= document.getElementById('amount').value;
 	var value 	= document.getElementById('value').value;
@@ -63,6 +68,37 @@ function addItem(){
 	});
 
 	setList(list);
+}
+
+function setUpdate(id){
+	var obj = list[id];
+	document.getElementById("desc").value 	= obj.desc;
+	document.getElementById("amount").value = obj.amount;
+	document.getElementById("value").value 	= obj.value;
+	
+	changeState("editing");
+}
+
+function resetForm(){
+	document.getElementById("desc").value 	= "";
+	document.getElementById("amount").value = "";
+	document.getElementById("value").value 	= "";
+
+	changeState("default");
+}
+
+function changeState(state){
+	switch(state){
+		case "editing":
+			document.getElementById("btn-update").style.display = "inline-block";
+			document.getElementById("btn-add").style.display 	= "none";
+			break;
+
+		case "default":
+			document.getElementById("btn-update").style.display = "none";
+			document.getElementById("btn-add").style.display 	= "inline-block";
+			break;
+	}
 }
 
 setList(list);
