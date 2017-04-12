@@ -33,7 +33,7 @@ function setList(list){
 		table += '<td>';
 		table += '<div class="btn-group">';
 		table += '<button class="btn btn-default" onclick="setUpdate(' + index + ');">Edit</button>';
-		table += '<button class="btn btn-default" onclick="deleteItem(' + index + ');">Delete</button>';
+		table += '<button class="btn btn-default" onclick="deleteData(' + index + ');">Delete</button>';
 		table += '</div>';
 		table += '</td>';
 		table += '</tr>';
@@ -68,6 +68,7 @@ function addData(){
 	});
 
 	setList(list);
+	resetForm();
 }
 
 function setUpdate(id){
@@ -75,8 +76,9 @@ function setUpdate(id){
 	document.getElementById("desc").value 	= obj.desc;
 	document.getElementById("amount").value = obj.amount;
 	document.getElementById("value").value 	= obj.value;
-	
+
 	changeState("editing");
+	document.getElementById("inputIdUpdate").innerHTML = '<input id="idUpdate" type="hidden" value="' + id + '">';
 }
 
 function resetForm(){
@@ -85,6 +87,7 @@ function resetForm(){
 	document.getElementById("value").value 	= "";
 
 	changeState("default");
+	document.getElementById("inputIdUpdate").innerHTML = '';
 }
 
 function changeState(state){
@@ -98,6 +101,35 @@ function changeState(state){
 			document.getElementById("btn-update").style.display = "none";
 			document.getElementById("btn-add").style.display 	= "inline-block";
 			break;
+	}
+}
+
+function updateData(){
+	var id 		= document.getElementById("idUpdate").value;
+	var desc 	= document.getElementById('desc').value;
+	var amount 	= document.getElementById('amount').value;
+	var value 	= document.getElementById('value').value;
+	list[id] = {
+		"desc" 		: desc,
+		"amount" 	: amount,
+		"value" 	: value, 
+	};
+	resetForm();
+	setList(list);
+}
+
+function deleteData(id){
+	if (confirm("Delete "+ list[id].desc +"?")) {
+		if (id === list.length - 1) {
+			list.pop();
+		}else if(id === 0){
+			list.shift();
+		}else{
+			var arrAuxIni = list.slice(0, id);
+			var arrAuxEnd = list.slice(id + 1);
+			list = arrAuxIni.concat(arrAuxEnd);
+		}
+		setList(list);
 	}
 }
 
