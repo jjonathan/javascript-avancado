@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
+    <!-- Header-ini -->
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -13,10 +14,14 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid">
+    <!-- Header-end -->
 
+    <!-- Content-ini -->
+    <div class="container-fluid">
+        <!-- Form-Ini -->
     	<div class="form-inline">
     		
+            <!-- Inputs-ini -->
     		<div class="form-group">
     			<input type="text" class="form-control" id="desc" placeholder="Description...">
     		</div>
@@ -26,21 +31,48 @@
     		<div class="form-group">
     			<input type="text" class="form-control" id="value" placeholder="Price...">
     		</div>
+            <!-- Inputs-End -->
 
+            <!-- Edit-Buttons-Ini -->
     		<span id="btn-update" style="display: none;">
-                <span id="inputIdUpdate"></span>
+                <span id="input-id-update"></span>
     			<button class="btn btn-default" onclick="updateData();">Save</button>
     			<button class="btn btn-default" onclick="resetForm();">Cancel</button>
     		</span>
+            <!-- Edit-Buttons-End -->
 
-			<button id="btn-add" class="btn btn-default" onclick="addData();">Add</button>
+            <!-- Add-Buttons-Ini -->
+            <span id="btn-add">
+                <button class="btn btn-default" onclick="addData();">Add</button>
+                <button class="btn btn-default" onclick="resetForm();">Reset</button>
+                <button class="btn btn-default" onclick="deleteList();">Delete List</button>
+            </span>
+            <!-- Add-Buttons-End -->
 
     	</div>
+        <!-- Form-End -->
 
+        <!-- Errors-Ini -->
+        <div id="errors" style="display: none;"></div>
+        <!-- Errors-End -->
+
+        <!-- List-Ini -->
         <table id="list-table" class="table">
         </table>
+        <!-- List-End -->
 
     </div>
+    <!-- Content-end -->
+
+    <!-- Footer-ini -->
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <!-- Total-ini -->
+            <h4 class="text-center text-success">Total: <span id="total-value">$ 0,00</span></h4>
+            <!-- Total-end -->
+        </div>
+    </nav>
+    <!-- Footer-end -->
 
     <script src="js/config.js"></script>
     <script src="js/main.js"></script>
